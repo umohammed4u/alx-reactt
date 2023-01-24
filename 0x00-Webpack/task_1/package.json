@@ -10,11 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jquery": "^3.6.3",
-    "lodash": "^4.17.21",
     "semistandard": "^16.0.1"
   },
   "devDependencies": {
+    "jquery": "^3.6.3",
+    "lodash": "^4.17.21",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
   },
