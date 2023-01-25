@@ -10,8 +10,8 @@ const root = createRoot(rootElement);
 
 root.render(
 	<React.StrictMode>
+		<Notifications />
 		<App />
-    <Notifications />
 	</React.StrictMode>
 );
 
