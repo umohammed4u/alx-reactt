@@ -21,7 +21,7 @@
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Olumide Micheal",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.16",
