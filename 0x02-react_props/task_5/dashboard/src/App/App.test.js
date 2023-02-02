@@ -7,6 +7,7 @@ import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
 import CourseList from '../CourseList/CourseList';
 
+// this is a shitty test btw
 describe('Test App.js', () => {
   it('App without crashing', (done) => {
     expect(shallow(<App />).exists());
