@@ -22,6 +22,8 @@
 - [React Higher Order Components](https://reactjs.org/docs/higher-order-components.html)
 - [Jest mock function](https://jestjs.io/docs/jest-object)
 
+![component](../images/components.jpeg)
+
 ## Learning Objectives
 
 - At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
