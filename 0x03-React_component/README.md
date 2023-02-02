@@ -3,6 +3,7 @@
 `Front-end` `JavaScript` `ES6` `React`
 
 |By: Johann Kerbrat, Engineering Manager at Uber Works|
+|:--|
 |Weight: 1|
 |Project will start Jan 31, 2023 6:00 AM, must end by Feb 3, 2023 6:00 AM|
 |Checker was released at Feb 1, 2023 12:00 AM|
