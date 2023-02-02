@@ -3,6 +3,9 @@
 /.pnp
 .pnp.js
 
+# files dependencies
+/0x02-react_props/task_0/dashboard/node_modules/
+
 # testing
 /coverage
 
