@@ -7,7 +7,7 @@ import propTypes from 'prop-types';
 
 export default function Notifications({ displayDrawer }) {
   return (
-    <div>
+    <div className='wrapper'>
       <div className='menuItem'>
           <p>Your Notifications</p>
       </div>
