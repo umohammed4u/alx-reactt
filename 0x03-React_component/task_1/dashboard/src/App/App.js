@@ -30,11 +30,15 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
+    if (typeof window !== 'undefined'){
+      window.addEventListener('keydown', this.handleKeyDown);
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown);
+    if (typeof window !== 'undefined'){
+      window.removeEventListener('keydown', this.handleKeyDown);
+    }
   }
   
   handleKeyDown(event) {

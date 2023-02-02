@@ -1,59 +1,70 @@
-import { shallow } from 'enzyme';
-import App from './App';
+/**
+ * @jest-environment jsdom
+*/
 import React from 'react';
-import Notifications from '../Notifications/Notifications';
-import Header from '../Header/Header';
-import Login from '../Login/Login';
-import Footer from '../Footer/Footer';
-import CourseList from '../CourseList/CourseList';
+import { shallow, mount } from 'enzyme';
+import App from './App';
 
-// this is a shitty test btw
 describe('Test App.js', () => {
-  it('App without crashing', (done) => {
-    expect(shallow(<App />).exists());
-    done();
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(<App />);
   });
 
-  it('div with the class App-header', (done) => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.contains(<header className='App-header' />))
-    done()
+  it('Renders App without crashing', () => {
+    expect(wrapper.exists());
   });
 
-  it('div with the class App-body', (done) => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.contains(<body className='App-body' />))
-    done();
+  it('App component contains Notifications component', () => {
+    expect(wrapper.find("Notifications")).toHaveLength(1);
   });
 
-  it('div with the class App-footer', (done) => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.contains(<footer className='App-footer' />))
-    done();
+  it('App component contains Header component', () => {
+    expect(wrapper.find("Header")).toHaveLength(1);
   });
 
-  it('App contains the notifications component', () => {
-    const appWrapper = shallow(<App />);
-    expect(appWrapper.containsMatchingElement(<Notifications />, <Header />, <Footer />, <Login />)).toBe(false);
+  it('App component contains Login component', () => {
+    expect(wrapper.find("Login")).toHaveLength(1);
   });
 
-  it('App does not render course list if logged out', () => {
-    const appWrapper = shallow(<App/>);
-    appWrapper.setProps({ isLoggedIn: false })
-    expect(appWrapper.contains(<CourseList />)).toBe(false);
+  it('App component contains Footer component', () => {
+    expect(wrapper.find("Footer")).toHaveLength(1);
   });
 
-  // When isLoggedIn is true, and add two checks. The first one should verify that the Login component is not included. The second one should verify that the CourseList component is included
-  it('App does not render courselist if logged out', () => {
-		const appWrapper = shallow(<App />);
-		appWrapper.setProps({ isLogedIn: false });
-		expect(appWrapper.contains(<CourseList />)).toBe(false);
+  it('test to check that CourseList is not displayed inside App', () => {
+    expect(wrapper.find("CourseList")).toHaveLength(0);
+  });
+});
+
+describe("Testing <App isLoggedIn={true} />", () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(<App isLoggedIn={true}/>);
   });
 
-  it('App renders courselist if logged in', () => {
-    const appWrapper = shallow(<App />);
-    appWrapper.setProps({ isLoggedIn: true });
-    expect(appWrapper.contains(<CourseList />)).toBe(false);
-    expect(appWrapper.contains(<Login />)).toBe(false);
-  })
+  it("the Login component is not included", () => {
+    expect(wrapper.find('Login')).toHaveLength(0);
+  });
+
+  it("the CourseList component is included", () => {
+    expect(wrapper.find('CourseList').exists());
+  });
+});
+
+describe("Testing <App logOut={function} />", () => {
+
+  it("verify that when the keys control and h are pressed the logOut function, passed as a prop, is called and the alert function is called with the string Logging you out", () => {
+    const wrapper = mount(<App logOut={()=>{console.log("ctrl and h are pressed")}}/>);
+    window.alert = jest.fn();
+    const inst = wrapper.instance();
+    const logout = jest.spyOn(inst, 'logOut');
+    const alert = jest.spyOn(window, 'alert');
+    const event = new KeyboardEvent('keydown', {bubbles:true, ctrlKey: true, key: 'h'});
+    document.dispatchEvent(event);
+    expect(alert).toBeCalledWith("Logging you out");
+    expect(logout).toBeCalled();
+    alert.mockRestore();
+  });
 });
