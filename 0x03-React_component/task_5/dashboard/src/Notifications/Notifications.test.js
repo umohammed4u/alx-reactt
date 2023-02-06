@@ -2,6 +2,7 @@
  * @jest-environment jsdom
 */
 import React from 'react';
+import { jest } from '@jest/globals';
 import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import  Notifications from './Notifications';
@@ -89,7 +90,46 @@ describe("Testing markAsRead method in the notification class Component", () => 
 	  const mock = jest.spyOn(console, 'log');
 	  const noti = wrapper.find('li').first();
 	  noti.simulate('click');
-	  expect(mock).equal("Notification 1 has been marked as read");
+	  expect(mock.text().contain("Notification 0 has been marked as read")).equal(true);
 	  mock.mockRestore();
+	});
+});
+
+describe("Testing the notification class Component re-rendering", () => {
+	it("verify that when updating the props of the component with the same list, the component doesnt rerender", () => {
+	  const listNotifications = [
+		{id: 1, value: "New course available", type: "default"},
+		{id: 2, value: "New resume available", type: "urgent"},
+		{id: 3, html: {__html: getLatestNotification()}, type: "urgent"},
+	  ];
+	  const listNotifications2 = [
+		{id: 1, value: "New course available changed", type: "default"},
+		{id: 2, value: "New resume available", type: "urgent"},
+		{id: 3, html: {__html: getLatestNotification()}, type: "urgent"},
+	  ];
+	  console.log = jest.fn();
+	  const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications}/>);
+	  wrapper.setProps({listNotifications: listNotifications});
+	  expect(wrapper.find('NotificationItem').length).equal(3);
+	  expect(wrapper.find('NotificationItem').first().props().value).equal("New course available");
+	});
+  
+	it("verify that when updating the props of the component with a longer list, the component does rerender", () => {
+	  const listNotifications = [
+		{id: 1, value: "New course available", type: "default"},
+		{id: 2, value: "New resume available", type: "urgent"},
+		{id: 3, html: {__html: getLatestNotification()}, type: "urgent"},
+	  ];
+	  const listNotifications2 = [
+		{id: 1, value: "New course available", type: "default"},
+		{id: 2, value: "New course available2", type: "default"},
+		{id: 3, value: "New resume available", type: "urgent"},
+		{id: 4, html: {__html: getLatestNotification()}, type: "urgent"},
+	  ];
+	  console.log = jest.fn();
+	  const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications}/>);
+	  wrapper.setProps({listNotifications: listNotifications2});
+	  expect(wrapper.find("NotificationItem").at(1).props().value).equal("New course available2");
+	  expect(wrapper.find("NotificationItem").length).equal(4);
 	});
 });
