@@ -5,7 +5,7 @@ const WithLogging = (WrappedComponent) => {
 
     class NewComponent extends Component{
         componentDidMount() {
-            console.log(`Component ${loggingName} is mounted.}`);
+            console.log(`Component ${loggingName} is mounted.`);
         }
 
         componentWillUnmount() {
