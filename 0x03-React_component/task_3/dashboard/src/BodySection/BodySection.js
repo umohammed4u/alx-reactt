@@ -13,3 +13,5 @@ class BodySection extends React.Component {
         )
     }
 }
+
+export default BodySection;
