@@ -32,7 +32,7 @@ class NotificationItem extends React.PureComponent {
 
 const styles = StyleSheet.create({
 	li: {
-	  'nth-child(3)': {
+	  ':nth-child(3)': {
 		color: '#3a3a3a'
 	  }
 	}
