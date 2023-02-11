@@ -31,7 +31,7 @@ class App extends React.Component {
     this.logOut = props.logOut;
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.state = {
-      displayDrawer
+      displayDrawer: false
     }
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
@@ -72,7 +72,11 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Notifications listNotifications={this.state.listNotifications}/>
+        <Notifications 
+        listNotifications={this.state.listNotifications}
+        displayDrawer={this.state.displayDrawer}
+        handleDisplayDrawer={this.handleDisplayDrawer} handleHideDrawer={this.handleHideDrawer}
+        />
         <div className={css(styles.App)}>
           <Header />
           <main className={css(styles.Main)}>
