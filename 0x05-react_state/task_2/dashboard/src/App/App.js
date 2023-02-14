@@ -22,11 +22,11 @@ const styles = StyleSheet.create({
   }
 })
 
-const listNotifications = [
-  { id: 1, value: 'New course available', type: 'default' },
-  { id: 2, value: 'New resume available', type: 'urgent' },
-  { id: 3, html: { __html: getLatestNotification() }, type: 'urgent' }
-]
+// const listNotifications = [
+//   { id: 1, value: 'New course available', type: 'default' },
+//   { id: 2, value: 'New resume available', type: 'urgent' },
+//   { id: 3, html: { __html: getLatestNotification }, type: 'urgent' }
+// ]
 
 const listCourses = [
   { id: 1, name: 'ES6', credit: 60 },
@@ -36,11 +36,16 @@ const listCourses = [
 
 export default class App extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       displayDrawer: false,
       user: user,
-      listCourses: listCourses
+      listCourses: listCourses,
+      listNotifications: [
+        { id: 1, value: 'New course available', type: 'default' },
+        { id: 2, value: 'New resume available', type: 'urgent' },
+        { id: 3, html: { __html: getLatestNotification() }, type: 'urgent' }
+      ]
     }
   }
 
@@ -101,7 +106,7 @@ export default class App extends React.Component {
   return (
     <AppContext.Provider value={{currentUser, logOut}}>
       <Notifications
-            listNotifications={this.listNotifications}
+            listNotifications={this.state.listNotifications}
             displayDrawer={this.state.displayDrawer}
             handleDisplayDrawer={this.handleDisplayDrawer} handleHideDrawer={this.handleHideDrawer}
           />

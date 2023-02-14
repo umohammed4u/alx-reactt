@@ -50,23 +50,32 @@ class Notifications extends React.Component {
             >
               <img src={closeIcon} alt="close icon" width="15px" />
             </button>
-            <p>Here is the list of notifications</p>
+            
+            {
+              this.props.listNotifications.length != 0 ?
+                <p>Here is the list of notifications</p>
+              : null
+            }
             <ul className={css(notificationStyles.ul)}>
-              {this.props.listNotifications.length === 0 && (
-                <NotificationItem value="No new notification for now" />
-              )}
-
-              {this.props.listNotifications.map((notification) => (
-                <NotificationItem
-                  key={notification.id}
-                  id={notification.id}
-                  type={notification.type}
-                  value={notification.value}
-                  html={notification.__html}
+              {
+                this.props.listNotifications.length == 0 ?
+                  <NotificationItem type="default" value="No new notification for now" />
+                : null
+              }
+              {
+                this.props.listNotifications.map((val, idx)=> {
+                  return <NotificationItem
+                  type={val.type}
+                  value={val.value}
+                  html={val.html}
+                  key={val.id}
                   markAsRead={this.markAsRead}
+                  id={val.id}
                 />
-              ))}
+                })
+              }
             </ul>
+
           </div>
         }
         
