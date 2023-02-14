@@ -84,6 +84,11 @@ export default class App extends React.Component {
     window.removeEventListener('keydown', alert)
   }
 
+  markNotificationAsRead(id) {
+    const Notifications = this.state.listNotifications
+    this.setState({listNotifications: Notifications.filter((notif)=> id != notif.id )})
+  }
+
   render () {
     const currentUser = this.state.user
     const logOut = this.logOut
@@ -110,6 +115,7 @@ export default class App extends React.Component {
               listNotifications={this.state.listNotifications}
               displayDrawer={this.state.displayDrawer}
               handleDisplayDrawer={this.handleDisplayDrawer} handleHideDrawer={this.handleHideDrawer}
+              markNotificationAsRead={this.markNotificationAsRead}
             />
         <Header />
         <hr className={css(styles.wrapper)}/>
