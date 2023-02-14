@@ -14,7 +14,7 @@ class NotificationItem extends React.PureComponent {
 			<React.Fragment>
 				{
 				this.props.type && this.props.value ?
-				<li data-notification-type={this.props.type} onClick={() => this.props.markAsRead(this.props.id)} className={css(styleDataType, styles.itemList)}>{this.props.value}</li> : null
+				<li data-notification-type={this.props.type} onClick={() => this.props.markNotificationAsRead(this.props.id)} className={css(styleDataType, styles.itemList)}>{this.props.value}</li> : null
 				}
 
 				{this.props.html ? (<li data-urgent dangerouslySetInnerHTML={{ __html: this.props.html }} className={css(styleDataType, styles.itemList)}></li>) : null}
