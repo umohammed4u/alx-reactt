@@ -1,4 +1,4 @@
-import accessImmutableObject from "../2-nested";
+import accessImmutableObject from './2-nested'
 
 accessImmutableObject({
     name: {
