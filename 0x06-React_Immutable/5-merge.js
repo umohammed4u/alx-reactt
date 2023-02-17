@@ -9,7 +9,7 @@ function mergeElements (page1, page2) {
     return Map(page2);
   }
 
-  return Map(page1).merge(List(page2));
+  return Map(page1).merge(page2);
 }
 
 export {
