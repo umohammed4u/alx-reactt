@@ -1,4 +1,4 @@
-import { mergeDeep, Map } from 'immutable';
+import { Map } from 'immutable';
 
 export default function mergeDeeplyElements (page1, page2) {
   const mapOne = new Map(page1);
