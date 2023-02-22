@@ -43,6 +43,7 @@
     "html-webpack-plugin": "^5.5.0",
     "image-webpack-loader": "^8.1.0",
     "inline-source-map": "^0.6.2",
+    "normalizr": "^3.6.2",
     "prop-type": "^0.0.1",
     "prop-types": "^15.8.1",
     "semistandard": "^16.0.1",
