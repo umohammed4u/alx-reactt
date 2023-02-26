@@ -1,4 +1,4 @@
-import { initialState, uiReducer } from './uiReducers';
+import { initialState, uiReducer } from './uiReducer';
 import { SELECT_COURSE } from "../actions/courseActionTypes";
 import { LOGOUT, DISPLAY_NOTIFICATION_DRAWER, LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions/uiActionTypes'
 import { fromJS } from "immutable";
