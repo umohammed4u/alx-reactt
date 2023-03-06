@@ -10,6 +10,7 @@ import CourseList from '../CourseList/CourseList';
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import BodySection from '../BodySection/BodySection';
 import { AppContext, user } from './AppContext'
+import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
   AppBody: {
@@ -133,3 +134,10 @@ export default class App extends React.Component {
   );
   }
 }
+
+export const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.get('isUserLoggedIn')
+  }
+}
+connect(mapStateToProps)(App)
